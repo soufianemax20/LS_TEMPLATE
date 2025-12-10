@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover exquisite diamond jewelry from Luxe Supreme. Explore our collection of timeless pieces, each with a unique story.">
+    <title>Luxe Supreme - The Diamond Journey</title>
+    <!-- Google Fonts for elegant typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Loading Bar for initial page load feedback -->
+    <div class="loading-bar"></div>
+
+    <!-- This canvas is for the 3D hero background -->
+    <canvas class="webgl"></canvas>
+
+    <!-- This container holds all the scrollable content -->
+    <div class="content-container">
+
+        <header class="hero-section">
+            <h1>The Diamond Journey</h1>
+            <p>Every gem holds a universe of stories. Discover yours.</p>
+            <div class="scroll-down-indicator">
+                <span></span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Chapter I: The story of the diamond's origin -->
+            <section class="story-chapter" id="birth">
+                <div class="glass-card story-card">
+                    <h2>Chapter I: The Birth</h2>
+                    <p>Born from cosmic pressure and ancient starlight, each piece is a raw testament to natural power.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section for showcasing the product collection -->
+            <section class="product-section" id="collection">
+                <h2 class="section-title">Own the Moment</h2>
+                <div class="product-grid">
+                    <!-- Product Card: Classic Solitaire -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/solitaire_velvet.png" alt="The Classic Solitaire" class="product-image">
+                        <h3>The Classic Solitaire</h3>
+                        <div class="product-price">€49.95</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                    <!-- Product Card: Layered Luxe -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/layered_velvet.png" alt="The Layered Luxe" class="product-image">
+                        <h3>The Layered Luxe</h3>
+                        <div class="product-price">€69.99</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                    <!-- Product Card: Vintage Heart -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/heart_velvet.png" alt="The Vintage Heart" class="product-image">
+                        <h3>The Vintage Heart</h3>
+                        <div class="product-price">€54.95</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                    <!-- Product Card: Zirconia Droplet -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/zirconia_velvet.jpg" alt="The Zirconia Droplet" class="product-image">
+                        <h3>The Zirconia Droplet</h3>
+                        <div class="product-price">€39.99</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                    <!-- New Products -->
+                    <!-- Product Card: Royal Sapphire -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/sapphire_velvet.png" alt="The Royal Sapphire" class="product-image">
+                        <h3>The Royal Sapphire</h3>
+                        <div class="product-price">€79.90</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                    <!-- Product Card: Golden Horizon -->
+                    <div class="product-card glass-card">
+                        <img src="assets/img/gold_cuff_velvet.png" alt="The Golden Horizon" class="product-image">
+                        <h3>The Golden Horizon</h3>
+                        <div class="product-price">€44.95</div>
+                        <a href="#" class="cta-button">Make It Yours</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section for trust signals like shipping, security, and authenticity -->
+            <section class="trust-signals">
+                <div class="trust-grid">
+                    <div class="trust-item glass-card">
+                        <span class="icon">🌐</span>
+                        <h3>Insured Global Shipping</h3>
+                    </div>
+                    <div class="trust-item glass-card">
+                        <span class="icon">🛡️</span>
+                        <h3>Guaranteed Secure Checkout</h3>
+                    </div>
+                    <div class="trust-item glass-card">
+                        <span class="icon">💎</span>
+                        <h3>Authenticity Assured</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section for showcasing materials -->
+            <section class="materials-section">
+                <h2 class="section-title">Crafted from the Finest Materials</h2>
+                <div class="materials-grid">
+                    <div class="material-card glass-card">
+                        <img src="assets/img/crystal.png" alt="Pure Crystals" class="material-image">
+                        <h3>Pure Crystals</h3>
+                        <p>Our crystals are sourced from the purest geological formations, ensuring unparalleled clarity and brilliance.</p>
+                    </div>
+                    <div class="material-card glass-card">
+                        <img src="assets/img/gold_cuff.png" alt="18k Gold" class="material-image">
+                        <h3>18k Gold</h3>
+                        <p>We use only the finest 18k gold, known for its rich color and lasting durability.</p>
+                    </div>
+                    <div class="material-card glass-card">
+                        <img src="assets/img/sapphire_ring.png" alt="Ethically Sourced Sapphires" class="material-image">
+                        <h3>Ethically Sourced Sapphires</h3>
+                        <p>Our sapphires are ethically sourced, ensuring that their beauty does not come at a human cost.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Luxe Supreme. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Main Script for animations and 3D effects -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
