@@ -31,7 +31,7 @@ html {
 }
 
 body {
-    background-color: var(--midnight-blue);
+    background-image: linear-gradient(180deg, #0A091A 0%, var(--midnight-blue) 100%);
     color: var(--text-light);
     font-family: var(--font-body);
     overflow-x: hidden;
@@ -194,6 +194,8 @@ footer {
     font-family: var(--font-heading);
     color: white;
     letter-spacing: 0.03em;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
 }
 
 .product-grid {
@@ -234,6 +236,9 @@ footer {
     display: flex;
     flex-direction: column;
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .product-card:hover {
@@ -241,13 +246,24 @@ footer {
     box-shadow: 0 12px 40px 0 rgba(15, 14, 43, 0.4);
 }
 
-.product-image {
+.product-image-container {
     width: 100%;
     height: 350px;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: 16px;
     margin-bottom: 25px;
     border: 1px solid var(--glass-border);
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
 }
 
 .product-card h3 {

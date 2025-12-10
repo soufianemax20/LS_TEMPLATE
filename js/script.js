@@ -88,6 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             this.renderer.setSize(this.sizes.width, this.sizes.height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            this.composer = new THREE.EffectComposer(this.renderer);
+            this.composer.addPass(new THREE.RenderPass(this.scene, this.camera));
+            const bloomPass = new THREE.UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                0.5, 0.4, 0.85
+            );
+            this.composer.addPass(bloomPass);
         }
 
         /**
@@ -188,8 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.diamondGroup.rotation.y = (elapsedTime * 0.1) + (this.scrollY * 0.0015);
                 this.diamondGroup.rotation.x = Math.sin(elapsedTime * 0.2) * 0.1;
                 if (this.diamondGroup.children[1]) {
-                    this.diamondGroup.children[1].rotation.y = elapsedTime * 0.2;
-                    this.diamondGroup.children[1].rotation.x = elapsedTime * 0.1;
+                    const innerCore = this.diamondGroup.children[1];
+                    innerCore.rotation.y = elapsedTime * 0.2;
+                    innerCore.rotation.x = elapsedTime * 0.1;
+                    const scale = 1 + Math.sin(elapsedTime * 2) * 0.05;
+                    innerCore.scale.set(scale, scale, scale);
                 }
             }
 
@@ -202,9 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.particles) {
                 this.particles.rotation.y = -elapsedTime * 0.05;
                 this.particles.position.y = -this.scrollY * 0.0005;
+                this.particles.position.z = this.scrollY * 0.01;
             }
 
-            this.renderer.render(this.scene, this.camera);
+            this.composer.render();
             window.requestAnimationFrame(this.render.bind(this));
         }
 
@@ -267,6 +279,54 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, observerOptions);
         sectionsToReveal.forEach(section => observer.observe(section));
+
+        const productCards = document.querySelectorAll('.product-card');
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px', threshold: 0.1 });
+
+        productCards.forEach(card => cardObserver.observe(card));
+    }
+
+    /**
+     * Applies a parallax effect to section titles on scroll.
+     */
+    function setupTitleParallax() {
+        const titles = document.querySelectorAll('.section-title');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            titles.forEach(title => {
+                const titleTop = title.parentElement.offsetTop;
+                const parallaxOffset = (scrollY - titleTop) * 0.1;
+                if (scrollY > titleTop - window.innerHeight && scrollY < titleTop + title.parentElement.offsetHeight) {
+                    title.style.transform = `translateY(${parallaxOffset}px)`;
+                }
+            });
+        });
+    }
+
+    /**
+     * Adds a smooth scroll to top for all CTA buttons.
+     */
+    function setupSmoothScroll() {
+        const ctaButtons = document.querySelectorAll('.cta-button');
+        ctaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
     }
 
     // --- Initialize all modules ---
@@ -274,4 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCardHoverEffect();
     setupLayerParallax();
     setupEntranceAnimations();
+    setupTitleParallax();
+    setupSmoothScroll();
 });
